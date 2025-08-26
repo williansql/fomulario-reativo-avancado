@@ -11,6 +11,7 @@ import { CpfPipe } from '../../shared/pipes/cpf.pipe';
 import { CnpjPipe } from '../../shared/pipes/cnpj.pipe';
 import { cpfValidator } from '../../shared/utils/validate-cpf';
 import { cnpjValidator } from '../../shared/utils/validate-cnpj';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-inscription-page',
@@ -22,7 +23,6 @@ import { cnpjValidator } from '../../shared/utils/validate-cnpj';
     NgxMaskDirective,
     CpfPipe,
     CnpjPipe,
-
 ],
   templateUrl: './inscription-page.html',
   styleUrl: './inscription-page.scss'
@@ -30,6 +30,7 @@ import { cnpjValidator } from '../../shared/utils/validate-cnpj';
 export class InscriptionPage {
 
   private readonly formGenerator = inject(FormGeneratorService);
+  private readonly toastr = inject(ToastrService);
 
   inscriptionForm = this.formGenerator.generateForm(INSCRIPTION_FORM_CONFIG);
   options: string[] = Object.values(DocumentTypeEnum);
@@ -80,6 +81,10 @@ export class InscriptionPage {
       docNumberControl?.clearValidators();
     }
     docNumberControl?.updateValueAndValidity();
+  }
+
+  showToastr(){
+    this.toastr.success('Inscricao realizada com sucesso!');
   }
 
 

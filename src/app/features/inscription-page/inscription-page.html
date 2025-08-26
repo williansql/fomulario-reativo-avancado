@@ -35,6 +35,8 @@
     {{ this.inscriptionForm.get('documentNumber')?.valid | json }}
   </div>
 
+  <button (click)="showToastr()" >Abrir o toastr</button>
+
 
   <!-- AUTOCOMPLETES -->
    <mat-autocomplete autoActiveFirstOption #documentType="matAutocomplete" >
