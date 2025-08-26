@@ -1,0 +1,46 @@
+<div class="container" [formGroup]="inscriptionForm" >
+  <input type="text" formControlName="type" placeholder="tipo">
+  <input type="text" formControlName="userName" placeholder="nome">
+  <input type="text" formControlName="userEmail" placeholder="email" >
+  <input
+    type="text"
+    formControlName="documentType"
+    placeholder="tipo de documento"
+    [matAutocomplete]="documentType"
+    >
+  <input
+    type="text"
+    formControlName="documentNumber"
+    [placeholder]="placeholder"
+    [mask]="mask"
+  >
+  <input type="text" formControlName="cep" placeholder="cep" >
+  <input type="text" formControlName="address" placeholder="endereço" >
+  <input type="text" formControlName="inscriptionValidate" placeholder="Validação do formulário">
+
+  <!-- Valor do formulário -->
+  <div>
+    <label for="">VALOR DO FORMULARIO:</label>
+    {{ this.inscriptionForm.value | json }}
+  </div>
+
+  <!-- Validação do formulário -->
+  <div>
+    <label for="">VALIDACAO DO FORMULARIO:</label>
+    {{ this.inscriptionForm.valid | json }}
+  </div>
+
+  <div>
+    <label for="">VALIDAÇÃO DE DOCUMENTOS:</label>
+    {{ this.inscriptionForm.get('documentNumber')?.valid | json }}
+  </div>
+
+
+  <!-- AUTOCOMPLETES -->
+   <mat-autocomplete autoActiveFirstOption #documentType="matAutocomplete" >
+    @for (item of filteredDocumentType | async; track $index) {
+      <mat-option [value]="item.toUpperCase()" > {{ item.toUpperCase() }} </mat-option>
+    }
+   </mat-autocomplete>
+
+</div>
