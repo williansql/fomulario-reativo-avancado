@@ -25,7 +25,7 @@ import { ToastrService } from 'ngx-toastr';
     CnpjPipe,
 ],
   templateUrl: './inscription-page.html',
-  styleUrl: './inscription-page.scss'
+  styleUrl: './inscription-page.css'
 })
 export class InscriptionPage {
 

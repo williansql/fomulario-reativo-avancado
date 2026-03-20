@@ -9,7 +9,7 @@ import { InscriptionPage } from './features/inscription-page/inscription-page';
     InscriptionPage
   ],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.css'
 })
 export class App {
   protected title = 'new-features';
