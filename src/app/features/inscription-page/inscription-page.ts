@@ -2,16 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { NgxMaskDirective } from 'ngx-mask';
+import { ToastrService } from 'ngx-toastr';
 import { map, Observable, startWith } from 'rxjs';
-import { FormGeneratorService } from '../../shared/services/form-generator.service';
+import { CnpjPipe } from '../../shared/pipes/cnpj.pipe';
+import { CpfPipe } from '../../shared/pipes/cpf.pipe';
+import { SignalFormGeneratorService } from '../../shared/services/signal-form-generator.service';
+import { cnpjValidator } from '../../shared/utils/validate-cnpj';
+import { cpfValidator } from '../../shared/utils/validate-cpf';
 import { DocumentTypeEnum } from './components/document-type.enum';
 import { INSCRIPTION_FORM_CONFIG } from './components/inscription-form.config';
-import { NgxMaskDirective } from 'ngx-mask';
-import { CpfPipe } from '../../shared/pipes/cpf.pipe';
-import { CnpjPipe } from '../../shared/pipes/cnpj.pipe';
-import { cpfValidator } from '../../shared/utils/validate-cpf';
-import { cnpjValidator } from '../../shared/utils/validate-cnpj';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-inscription-page',
@@ -29,7 +29,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class InscriptionPage {
 
-  private readonly formGenerator = inject(FormGeneratorService);
+  private readonly formGenerator = inject(SignalFormGeneratorService);
   private readonly toastr = inject(ToastrService);
 
   inscriptionForm = this.formGenerator.generateForm(INSCRIPTION_FORM_CONFIG);
@@ -87,10 +87,8 @@ export class InscriptionPage {
     this.toastr.success('Inscricao realizada com sucesso!');
   }
 
-
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 }

@@ -1,7 +1,7 @@
-import { ValidatorFn } from "@angular/forms";
+import { SignalValidatorFn } from "../const/adapt-validators-signals";
 
 export interface IformFieldConfigInterface{
   defaultValue?: string;
-  validators?: ValidatorFn[];
+  validators?: SignalValidatorFn[];
   disabled?: boolean;
 }
